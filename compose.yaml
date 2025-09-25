@@ -1,10 +1,10 @@
-name: project-name
+name: projet-symfony
 
 services:
   ###> doctrine/doctrine-bundle ###
   database:
-    image: bitnami/mariadb:10.6.21
-    container_name: project-database
+    image: bitnami/mariadb:10.6.20
+    container_name: project-database-symfony
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:-root_password}
       - MARIADB_USER=${MARIADB_USER:-app}
@@ -21,7 +21,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:5.2.1
-    container_name: project-phpmyadmin
+    container_name: project-phpmyadmin-symfony
     ports:
       - 8080:80
     environment:
@@ -39,7 +39,7 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    container_name: project-apache
+    container_name: project-apache-symfony
     volumes:
       - .:/var/www/
       - ./docker/apache/apache.conf:/etc/apache2/sites-enabled/000-default.conf
